@@ -19,7 +19,7 @@ export default function Home() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
   } = useForm({
     resolver: zodResolver(schema),
@@ -28,6 +28,7 @@ export default function Home() {
       password: '',
       rememberMe: true,
     },
+    mode: 'all',
   })
   const onSubmit = (values: z.infer<typeof schema>) => {
     console.log(values)
@@ -88,7 +89,7 @@ export default function Home() {
           </FormItem>
 
           <FormItem wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" disabled={!isValid}>
               Submit
             </Button>
           </FormItem>
