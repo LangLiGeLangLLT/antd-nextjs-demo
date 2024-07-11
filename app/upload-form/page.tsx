@@ -20,7 +20,7 @@ export default function Page() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
       fileList: [],

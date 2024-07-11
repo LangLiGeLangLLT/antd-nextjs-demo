@@ -22,7 +22,7 @@ export default function Home() {
     formState: { errors, isValid },
     watch,
     reset,
-  } = useForm({
+  } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
       username: '',
