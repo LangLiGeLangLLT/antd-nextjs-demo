@@ -21,6 +21,7 @@ export default function Home() {
     handleSubmit,
     formState: { errors, isValid },
     watch,
+    reset,
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -32,6 +33,13 @@ export default function Home() {
   })
   const onSubmit = (values: z.infer<typeof schema>) => {
     console.log(values)
+  }
+  const onReset = () => {
+    reset({
+      username: 'admin',
+      password: 'xxx',
+      rememberMe: false,
+    })
   }
 
   React.useEffect(() => {
@@ -89,9 +97,13 @@ export default function Home() {
           </FormItem>
 
           <FormItem wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit" disabled={!isValid}>
-              Submit
-            </Button>
+            <div className="space-x-2">
+              <Button onClick={onReset}>Reset</Button>
+
+              <Button type="primary" htmlType="submit" disabled={!isValid}>
+                Submit
+              </Button>
+            </div>
           </FormItem>
         </Form>
       </div>
