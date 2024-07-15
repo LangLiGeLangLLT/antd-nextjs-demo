@@ -12,6 +12,7 @@
     "@ant-design/icons": "^5.3.7",
     "@ant-design/nextjs-registry": "^1.0.0",
     "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-virtual": "^3.8.3",
     "antd": "^5.19.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
