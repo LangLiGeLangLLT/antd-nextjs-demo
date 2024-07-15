@@ -3,7 +3,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import React from 'react'
 
-const data = new Array(100 * 10000).fill(0).map((_, i) => i)
+const data = new Array(10 * 10000).fill(0).map((_, i) => i)
 
 export default function Page() {
   return (
@@ -24,7 +24,14 @@ function NoVirtualizer() {
       }}
     >
       {data.map((item) => (
-        <div key={item}>Row {item}</div>
+        <div
+          key={item}
+          style={{
+            height: '35px',
+          }}
+        >
+          Row {item}
+        </div>
       ))}
     </div>
   )
