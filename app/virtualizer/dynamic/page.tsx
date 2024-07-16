@@ -23,6 +23,7 @@ const sentences = new Array(100)
 export default function Page() {
   const [isClient, setIsClient] = React.useState(false)
   const [type, setType] = React.useState<Type>(Type.Row)
+  const [isPending, startTransition] = React.useTransition()
 
   React.useEffect(() => {
     setIsClient(true)
@@ -33,13 +34,34 @@ export default function Page() {
   return (
     <>
       <div className="space-x-2">
-        <Button type="primary" onClick={() => setType(Type.Row)}>
+        <Button
+          type="primary"
+          onClick={() => {
+            startTransition(() => {
+              setType(Type.Row)
+            })
+          }}
+        >
           Row
         </Button>
-        <Button type="primary" onClick={() => setType(Type.Column)}>
+        <Button
+          type="primary"
+          onClick={() => {
+            startTransition(() => {
+              setType(Type.Column)
+            })
+          }}
+        >
           Column
         </Button>
-        <Button type="primary" onClick={() => setType(Type.Grid)}>
+        <Button
+          type="primary"
+          onClick={() => {
+            startTransition(() => {
+              setType(Type.Grid)
+            })
+          }}
+        >
           Grid
         </Button>
       </div>
@@ -50,7 +72,7 @@ export default function Page() {
           case Type.Column:
             return <ColumnVirtualizerDynamic />
           case Type.Grid: {
-            const columns = generateColumns(30)
+            const columns = generateColumns(10)
             const data = generateData(columns)
             return <GridVirtualizerDynamic columns={columns} data={data} />
           }
@@ -324,7 +346,7 @@ const generateColumns = (count: number) => {
   })
 }
 
-const generateData = (columns: Column[], count = 300) => {
+const generateData = (columns: Column[], count = 100) => {
   return new Array(count).fill(0).map((_, rowIndex) =>
     columns.reduce<string[]>((acc, _curr, colIndex) => {
       // simulate dynamic size cells
