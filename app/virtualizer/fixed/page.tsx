@@ -1,6 +1,6 @@
 'use client'
 
-import './styles.css'
+import '../styles.css'
 
 import { useVirtualizer } from '@tanstack/react-virtual'
 import React from 'react'
