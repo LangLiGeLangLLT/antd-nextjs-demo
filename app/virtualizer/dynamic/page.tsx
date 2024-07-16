@@ -5,6 +5,8 @@ import './styles.css'
 
 import React from 'react'
 
+const { Fragment } = React
+
 const rows = new Array(10000)
   .fill(true)
   .map(() => 25 + Math.round(Math.random() * 100))
@@ -194,7 +196,7 @@ function GridVirtualizerVariable({
           }}
         >
           {rowVirtualizer.getVirtualItems().map((virtualRow) => (
-            <React.Fragment key={virtualRow.index}>
+            <Fragment key={virtualRow.index}>
               {columnVirtualizer.getVirtualItems().map((virtualColumn) => (
                 <div
                   key={virtualColumn.index}
@@ -219,7 +221,7 @@ function GridVirtualizerVariable({
                   Cell {virtualRow.index}, {virtualColumn.index}
                 </div>
               ))}
-            </React.Fragment>
+            </Fragment>
           ))}
         </div>
       </div>
