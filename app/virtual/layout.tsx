@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col">
       <AntdLayout>
         <Header />
-        <Content className="flex-1 container flex flex-col">{children}</Content>
+        <Content className="flex-1 flex flex-col">{children}</Content>
         <Footer />
       </AntdLayout>
     </div>
