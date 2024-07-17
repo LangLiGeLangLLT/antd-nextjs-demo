@@ -5,6 +5,7 @@ import React from 'react'
 
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { isNil } from 'lodash'
 
 const data: number[] = new Array(10000).fill(0).map((_, i) => i)
 const { Fragment } = React
@@ -65,9 +66,9 @@ const Demo = React.memo(function Demo({
             <Fragment key={virtualRow.key}>
               {columnVirtualizer.getVirtualItems().map((virtualColumn) => (
                 <Fragment key={virtualColumn.key}>
-                  {data[
-                    virtualRow.index * columnCount + virtualColumn.index
-                  ] !== null ? (
+                  {!isNil(
+                    data[virtualRow.index * columnCount + virtualColumn.index]
+                  ) ? (
                     <div
                       style={{
                         position: 'absolute',
