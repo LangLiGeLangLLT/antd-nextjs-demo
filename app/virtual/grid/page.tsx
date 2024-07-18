@@ -19,7 +19,7 @@ export default function Page() {
   React.useEffect(() => {
     if (size) {
       debounce(() => {
-        setColumnCount(Math.floor((size?.width || 0) / len))
+        setColumnCount(Math.floor((size.width || 0) / len))
       }, 100)()
     }
   }, [size])
