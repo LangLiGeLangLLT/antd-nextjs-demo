@@ -5,7 +5,6 @@ import React from 'react'
 
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { isNil } from 'lodash'
 
 const data: number[] = new Array(10000).fill(0).map((_, i) => i)
 const { Fragment } = React
@@ -14,10 +13,7 @@ export default function Page() {
   const parentRef = React.useRef<HTMLDivElement>(null)
   const size = useSize(parentRef)
   const len = 122
-  const columnCount = React.useMemo(
-    () => Math.floor((size?.width || 0) / len),
-    [size]
-  )
+  const columnCount = Math.floor((size?.width || 0) / len)
 
   return (
     <div ref={parentRef} className="flex-1">
@@ -66,9 +62,8 @@ const Demo = React.memo(function Demo({
             <Fragment key={virtualRow.key}>
               {columnVirtualizer.getVirtualItems().map((virtualColumn) => (
                 <Fragment key={virtualColumn.key}>
-                  {!isNil(
-                    data[virtualRow.index * columnCount + virtualColumn.index]
-                  ) ? (
+                  {virtualRow.index * columnCount + virtualColumn.index <=
+                  data.length - 1 ? (
                     <div
                       style={{
                         position: 'absolute',
