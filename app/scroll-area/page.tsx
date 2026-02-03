@@ -1,13 +1,7 @@
 'use client'
 
 import React from 'react'
-
 import { ScrollArea } from '@/components/ui/scroll-area'
-
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`,
-)
-
 export default function Page() {
   return (
     <div className="h-screen flex flex-col">
